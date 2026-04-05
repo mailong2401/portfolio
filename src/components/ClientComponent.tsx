@@ -1,17 +1,23 @@
-// app/components/ClientComponent.tsx
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import LiquidGlass from "liquid-glass-react";
-
-const menuItems = ["Home", "Features", "Technology", "Pricing", "Contact"];
 
 export default function ClientComponent() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [scroll, setScroll] = useState(0);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
+  const menuItems = ["Home", "Features", "Technology", "Pricing", "Contact"];
+
+  // Chỉ chạy ở client
   useEffect(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -21,24 +27,22 @@ export default function ClientComponent() {
   }, []);
 
   const getBackgroundTransform = () => {
-    if (typeof window === "undefined") return "translate(0px, 0px)";
+    // Kiểm tra windowSize đã được set hay chưa
+    if (windowSize.width === 0) return "translate(0px, 0px)";
 
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-
-    const deadZoneX = windowWidth * 0.3;
-    const deadZoneY = windowHeight * 0.3;
+    const deadZoneX = windowSize.width * 0.3;
+    const deadZoneY = windowSize.height * 0.3;
 
     const leftThreshold = deadZoneX;
-    const rightThreshold = windowWidth - deadZoneX;
+    const rightThreshold = windowSize.width - deadZoneX;
     const topThreshold = deadZoneY;
-    const bottomThreshold = windowHeight - deadZoneY;
+    const bottomThreshold = windowSize.height - deadZoneY;
 
     let moveX = 0;
     let moveY = 0;
 
-    const maxMoveX = windowWidth * 0.1;
-    const maxMoveY = windowHeight * 0.1;
+    const maxMoveX = windowSize.width * 0.1;
+    const maxMoveY = windowSize.height * 0.1;
 
     if (mousePosition.x < leftThreshold) {
       const percent = 1 - mousePosition.x / leftThreshold;
@@ -73,7 +77,7 @@ export default function ClientComponent() {
       ref={containerRef}
       onScroll={handleScroll}
     >
-      {/* Parallax Background Layer */}
+      {/* Phần còn lại giữ nguyên code cũ của bạn */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <div
           className="absolute -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
