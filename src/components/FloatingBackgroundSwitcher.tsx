@@ -17,7 +17,7 @@ import {
 const backgrounds = [
   {
     id: 1,
-    name: "Galaxy",
+    name: "Anime",
     url: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
     icon: <Sparkles className="w-5 h-5" />,
     gradient: "from-purple-900/30 to-cyan-900/30",

@@ -22,7 +22,7 @@ export default function Header({
   const [headerTransform, setHeaderTransform] = useState("translate(0px, 0px)");
   const [top, setTop] = useState("10%");
   const [left, setLeft] = useState("50%");
-  const [speeds] = useState(10);
+  const [speeds] = useState(30);
 
   useEffect(() => {
     setScrollingOverBrightSection(scrollPosition > 230 && scrollPosition < 500);
@@ -43,9 +43,8 @@ export default function Header({
     let moveX = 0;
     let moveY = 0;
 
-    // Giảm maxMove xuống để header di chuyển ít hơn background
-    const maxMoveX = windowSize.width * 0.03; // 3% thay vì 10%
-    const maxMoveY = windowSize.height * 0.03; // 3% thay vì 10%
+    const maxMoveX = windowSize.width * 0.03;
+    const maxMoveY = windowSize.height * 0.03;
 
     if (mousePosition.x < leftThreshold) {
       const percent = 1 - mousePosition.x / leftThreshold;
