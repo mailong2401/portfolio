@@ -101,10 +101,10 @@ export default function AnimatedBackground({
             ease: [0.76, 0, 0.24, 1],
             delay: 0.2,
           }}
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-0"
         >
           <div
-            className="absolute -inset-[10%] transition-transform duration-500 ease-out will-change-transform"
+            className="absolute -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
             style={{
               transform: getBackgroundTransform(),
               transitionTimingFunction: "cubic-bezier(0.2, 0.9, 0.3, 1.1)",
@@ -122,14 +122,6 @@ export default function AnimatedBackground({
           </div>
         </motion.div>
       )}
-
-      {/* Grid Overlay */}
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none z-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`,
-        }}
-      />
     </>
   );
 }

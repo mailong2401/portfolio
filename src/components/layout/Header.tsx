@@ -4,29 +4,18 @@ import { useRef, useEffect, useState } from "react";
 import LiquidGlass from "liquid-glass-react";
 
 interface HeaderProps {
-  scrollPosition: number;
   mousePosition: { x: number; y: number };
   windowSize: { width: number; height: number };
 }
 
 const menuItems = ["Home", "Features", "Technology", "Pricing", "Contact"];
 
-export default function Header({
-  scrollPosition,
-  mousePosition,
-  windowSize,
-}: HeaderProps) {
+export default function Header({ mousePosition, windowSize }: HeaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollingOverBrightSection, setScrollingOverBrightSection] =
-    useState(false);
   const [headerTransform, setHeaderTransform] = useState("translate(0px, 0px)");
   const [top, setTop] = useState("10%");
   const [left, setLeft] = useState("50%");
   const [speeds] = useState(30);
-
-  useEffect(() => {
-    setScrollingOverBrightSection(scrollPosition > 230 && scrollPosition < 500);
-  }, [scrollPosition]);
 
   // Tính toán transform cho header (di chuyển nhẹ hơn background)
   useEffect(() => {
@@ -76,7 +65,6 @@ export default function Header({
       elasticity={0.2}
       cornerRadius={32}
       mouseContainer={containerRef}
-      overLight={scrollingOverBrightSection}
       mode="standard"
       style={{
         position: "fixed",

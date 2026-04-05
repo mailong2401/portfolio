@@ -99,11 +99,7 @@ export default function ClientComponent() {
   );
 
   return (
-    <div
-      className="relative w-full h-full overflow-auto"
-      ref={containerRef}
-      onScroll={handleScroll}
-    >
+    <div className="relative w-full h-full " ref={containerRef}>
       <AnimatedBackground
         currentBackground={currentBackground}
         nextBackground={nextBackground}
@@ -121,11 +117,7 @@ export default function ClientComponent() {
           ease: [0.76, 0, 0.24, 1],
         }}
       >
-        <Header
-          scrollPosition={scroll}
-          mousePosition={mousePosition}
-          windowSize={windowSize}
-        />
+        <Header mousePosition={mousePosition} windowSize={windowSize} />
       </motion.div>
       <FloatingBackgroundSwitcher onBackgroundChange={handleBackgroundChange} />
     </div>

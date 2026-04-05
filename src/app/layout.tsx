@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TECHVERSE - Next Generation Technology Platform",
+  title: "Portfolio - MaiLong",
   description: "Experience the future of digital innovation",
 };
 
@@ -17,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} min-h-screen bg-gradient-to-br from-black via-gray-950 to-black`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

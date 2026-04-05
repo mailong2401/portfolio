@@ -101,7 +101,6 @@ export default function FloatingBackgroundSwitcher({
                 <h3 className="text-white font-semibold text-lg">
                   Background Gallery
                 </h3>
-                <Sparkles className="w-4 h-4 text-purple-400 animate-pulse" />
               </div>
 
               <div className="space-y-2">
