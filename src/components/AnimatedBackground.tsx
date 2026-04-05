@@ -26,8 +26,8 @@ export default function AnimatedBackground({
   const getBackgroundTransform = () => {
     if (windowSize.width === 0) return "translate(0px, 0px)";
 
-    const deadZoneX = windowSize.width * 0.3;
-    const deadZoneY = windowSize.height * 0.3;
+    const deadZoneX = windowSize.width * 0.25;
+    const deadZoneY = windowSize.height * 0.25;
 
     const leftThreshold = deadZoneX;
     const rightThreshold = windowSize.width - deadZoneX;

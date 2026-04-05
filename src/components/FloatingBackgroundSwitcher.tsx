@@ -2,52 +2,37 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Sparkles,
-  Mountain,
-  Sunset,
-  Droplets,
-  Trees,
-  Camera,
-  Palette,
-  Star,
-  Compass,
-} from "lucide-react";
+import { Sparkles, Palette } from "lucide-react";
 
 const backgrounds = [
   {
     id: 1,
     name: "Anime",
-    url: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
-    icon: <Sparkles className="w-5 h-5" />,
+    url: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
     gradient: "from-purple-900/30 to-cyan-900/30",
   },
   {
     id: 2,
     name: "Mountain",
     url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    icon: <Mountain className="w-5 h-5" />,
     gradient: "from-blue-900/30 to-emerald-900/30",
   },
   {
     id: 3,
     name: "Sunset",
     url: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    icon: <Sunset className="w-5 h-5" />,
     gradient: "from-orange-900/30 to-red-900/30",
   },
   {
     id: 4,
     name: "Ocean",
     url: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    icon: <Droplets className="w-5 h-5" />,
     gradient: "from-teal-900/30 to-blue-900/30",
   },
   {
     id: 5,
     name: "Forest",
     url: "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    icon: <Trees className="w-5 h-5" />,
     gradient: "from-green-900/30 to-emerald-900/30",
   },
 ];
@@ -66,7 +51,7 @@ export default function FloatingBackgroundSwitcher({
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-50 bg-white/10 backdrop-blur-xl rounded-full p-4 shadow-2xl border border-white/20 group"
+        className="fixed bottom-8 right-8 z-50 bg-white/10 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/20 group"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
@@ -121,13 +106,6 @@ export default function FloatingBackgroundSwitcher({
                     }`}
                     whileHover={{ x: 5 }}
                   >
-                    <div
-                      className={`p-2 rounded-lg transition-all duration-300 ${
-                        hoveredBg === bg.id ? "scale-110" : ""
-                      }`}
-                    >
-                      {bg.icon}
-                    </div>
                     <span className="text-white flex-1 text-left">
                       {bg.name}
                     </span>
@@ -140,13 +118,6 @@ export default function FloatingBackgroundSwitcher({
                     )}
                   </motion.button>
                 ))}
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-white/10">
-                <p className="text-white/50 text-xs text-center flex items-center justify-center gap-1">
-                  <Compass className="w-3 h-3" />
-                  Click to change background
-                </p>
               </div>
             </motion.div>
           </>
