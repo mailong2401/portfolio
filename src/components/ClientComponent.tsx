@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Header from "@/components/layout/Header";
 import FloatingBackgroundSwitcher from "@/components/FloatingBackgroundSwitcher";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import UserCard from "@/components/UserCard";
 import { motion } from "framer-motion";
 
 interface Background {
@@ -99,7 +100,7 @@ export default function ClientComponent() {
   );
 
   return (
-    <div className="relative w-full h-full " ref={containerRef}>
+    <div className="relative w-full h-full" ref={containerRef}>
       <AnimatedBackground
         currentBackground={currentBackground}
         nextBackground={nextBackground}
@@ -118,6 +119,15 @@ export default function ClientComponent() {
         }}
       >
         <Header mousePosition={mousePosition} windowSize={windowSize} />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+        }}
+      >
+        <UserCard mousePosition={mousePosition} windowSize={windowSize} />
       </motion.div>
       <FloatingBackgroundSwitcher onBackgroundChange={handleBackgroundChange} />
     </div>
