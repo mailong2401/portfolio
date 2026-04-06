@@ -1,128 +1,219 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Palette } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Sparkles,
+  Palette,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+} from "lucide-react";
+import LiquidGlass from "liquid-glass-react";
 
 const backgrounds = [
   {
     id: 1,
-    name: "Anime",
+    name: "Mountain Lake",
     url: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
     gradient: "from-purple-900/30 to-cyan-900/30",
+    preview: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
   },
   {
     id: 2,
-    name: "Mountain",
+    name: "Forest Path",
     url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-blue-900/30 to-emerald-900/30",
+    preview:
+      "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
     id: 3,
-    name: "Sunset",
+    name: "Sunset Beach",
     url: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-orange-900/30 to-red-900/30",
+    preview:
+      "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
     id: 4,
-    name: "Ocean",
+    name: "City Lights",
     url: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-teal-900/30 to-blue-900/30",
+    preview:
+      "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
     id: 5,
-    name: "Forest",
+    name: "Green Forest",
     url: "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-green-900/30 to-emerald-900/30",
+    preview:
+      "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
 ];
 
 export default function FloatingBackgroundSwitcher({
   onBackgroundChange,
 }: {
-  onBackgroundChange: (url: string, gradient: string) => void;
+  onBackgroundChange: (url: string, gradient: string) => Promise<void> | void;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedBg, setSelectedBg] = useState(backgrounds[0]);
-  const [hoveredBg, setHoveredBg] = useState<number | null>(null);
+  const [scrollIndex, setScrollIndex] = useState(0);
+  const [loadingBgId, setLoadingBgId] = useState<number | null>(null);
+  const itemsPerPage = 4;
+
+  const preloadImage = (url: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+      img.src = url;
+    });
+  };
+
+  const handleBackgroundClick = async (bg: (typeof backgrounds)[0]) => {
+    if (loadingBgId !== null) return; // Đang load ảnh khác thì không cho click
+
+    setLoadingBgId(bg.id);
+
+    try {
+      // Preload ảnh chất lượng cao trước khi chuyển
+      await preloadImage(bg.url);
+
+      // Sau khi load xong mới gọi callback
+      await onBackgroundChange(bg.url, bg.gradient);
+
+      setSelectedBg(bg);
+    } catch (error) {
+      console.error("Failed to load background:", error);
+    } finally {
+      setLoadingBgId(null);
+    }
+  };
+
+  const nextSlide = () => {
+    if (scrollIndex + itemsPerPage < backgrounds.length) {
+      setScrollIndex(scrollIndex + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (scrollIndex > 0) {
+      setScrollIndex(scrollIndex - 1);
+    }
+  };
+
+  const visibleBackgrounds = backgrounds.slice(
+    scrollIndex,
+    scrollIndex + itemsPerPage,
+  );
 
   return (
-    <>
-      {/* Floating Button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-50 bg-white/10 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/20 group"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-      >
-        <Palette className="w-6 h-6 text-white group-hover:rotate-12 transition-transform" />
-      </motion.button>
+    <LiquidGlass
+      displacementScale={100}
+      blurAmount={0.2}
+      saturation={140}
+      aberrationIntensity={2}
+      elasticity={0.2}
+      cornerRadius={32}
+      mode="standard"
+      style={{
+        position: "fixed",
+        top: "80%",
+        left: "23%",
+      }}
+    >
+      <div className="flex items-center gap-4 px-4 py-2">
+        {/* Title with icon */}
+        <div className="flex items-center gap-2 pr-4 border-r border-white/20">
+          <Palette className="w-4 h-4 text-white" />
+          <span className="text-white text-sm font-medium">Backgrounds</span>
+        </div>
 
-      {/* Floating Panel */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
-            />
+        {/* Navigation Buttons */}
+        <motion.button
+          onClick={prevSlide}
+          disabled={scrollIndex === 0 || loadingBgId !== null}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`p-1 rounded-full transition-all duration-300 ${
+            scrollIndex === 0 || loadingBgId !== null
+              ? "opacity-30 cursor-not-allowed"
+              : "hover:bg-white/20 cursor-pointer"
+          }`}
+        >
+          <ChevronLeft className="w-5 h-5 text-white" />
+        </motion.button>
 
-            {/* Panel */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: "spring", damping: 20 }}
-              className="fixed bottom-28 right-8 z-50 w-80 bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-4"
+        {/* Horizontal Gallery */}
+        <div className="flex gap-3 overflow-visible">
+          {visibleBackgrounds.map((bg) => (
+            <motion.button
+              key={bg.id}
+              onClick={() => handleBackgroundClick(bg)}
+              whileHover={{
+                scale: loadingBgId === null ? 1.05 : 1,
+                y: loadingBgId === null ? -5 : 0,
+              }}
+              whileTap={{ scale: loadingBgId === null ? 0.98 : 1 }}
+              className="relative group"
+              disabled={loadingBgId !== null}
             >
-              <div className="flex items-center justify-between mb-4 px-2">
-                <h3 className="text-white font-semibold text-lg">
-                  Background Gallery
-                </h3>
-              </div>
+              <div
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
+                  selectedBg.id === bg.id
+                    ? "ring-2 ring-cyan-400 ring-offset-2 ring-offset-black/20"
+                    : ""
+                } ${loadingBgId === bg.id ? "opacity-50" : ""}`}
+              >
+                {/* Image Preview */}
+                <img
+                  src={bg.preview}
+                  alt={bg.name}
+                  className="w-24 h-15 object-cover"
+                />
 
-              <div className="space-y-2">
-                {backgrounds.map((bg) => (
-                  <motion.button
-                    key={bg.id}
-                    onClick={() => {
-                      setSelectedBg(bg);
-                      onBackgroundChange(bg.url, bg.gradient);
-                      setIsOpen(false);
-                    }}
-                    onHoverStart={() => setHoveredBg(bg.id)}
-                    onHoverEnd={() => setHoveredBg(null)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${
-                      selectedBg.id === bg.id
-                        ? "bg-white/20 border border-white/30"
-                        : "bg-white/5 hover:bg-white/15"
-                    }`}
-                    whileHover={{ x: 5 }}
-                  >
-                    <span className="text-white flex-1 text-left">
-                      {bg.name}
-                    </span>
-                    {selectedBg.id === bg.id && (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="w-2 h-2 rounded-full bg-green-400"
-                      />
-                    )}
-                  </motion.button>
-                ))}
+                {/* Gradient Overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t ${bg.gradient} opacity-60`}
+                />
+
+                {/* Loading Overlay */}
+                {loadingBgId === bg.id && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <Loader2 className="w-6 h-6 text-white animate-spin" />
+                  </div>
+                )}
+
+                {/* Hover Glow Effect */}
+                {loadingBgId === null && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/20 group-hover:via-purple-500/20 group-hover:to-cyan-500/20 transition-all duration-500" />
+                )}
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <motion.button
+          onClick={nextSlide}
+          disabled={
+            scrollIndex + itemsPerPage >= backgrounds.length ||
+            loadingBgId !== null
+          }
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`p-1 rounded-full transition-all duration-300 ${
+            scrollIndex + itemsPerPage >= backgrounds.length ||
+            loadingBgId !== null
+              ? "opacity-30 cursor-not-allowed"
+              : "hover:bg-white/20 cursor-pointer"
+          }`}
+        >
+          <ChevronRight className="w-5 h-5 text-white" />
+        </motion.button>
+      </div>
+    </LiquidGlass>
   );
 }

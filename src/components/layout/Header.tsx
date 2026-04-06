@@ -8,7 +8,7 @@ interface HeaderProps {
   windowSize: { width: number; height: number };
 }
 
-const menuItems = ["Home", "Features", "Technology", "Pricing", "Contact"];
+const menuItems = ["Home", "Blogs", "Projects", "Pricing", "Contact"];
 
 export default function Header({ mousePosition, windowSize }: HeaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);

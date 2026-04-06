@@ -27,7 +27,7 @@ export default function ClientComponent() {
   // Scroll optimization
   const scrollRef = useRef(0);
 
-  // Mouse move optimization với RAF throttle (cách của game engine)
+  // Mouse move optimization với RAF throttle
   const mouseRef = useRef({ x: 0, y: 0 });
   const ticking = useRef(false);
 
@@ -37,15 +37,11 @@ export default function ClientComponent() {
       height: window.innerHeight,
     });
 
-    // Mouse move handler với RAF throttle - tối ưu như game engine
     const handleMouseMove = (e: MouseEvent) => {
-      // Lưu giá trị mới nhất vào ref
       mouseRef.current = { x: e.clientX, y: e.clientY };
 
-      // Chỉ request animation frame nếu chưa có tick nào đang chạy
       if (!ticking.current) {
         requestAnimationFrame(() => {
-          // Cập nhật state với giá trị mới nhất từ ref
           setMousePosition(mouseRef.current);
           ticking.current = false;
         });
@@ -69,12 +65,10 @@ export default function ClientComponent() {
     };
   }, []);
 
-  // Scroll handler tối ưu - chỉ setState khi giá trị thay đổi
   const handleScroll = useCallback((event: React.UIEvent<HTMLDivElement>) => {
     const target = event.target as HTMLDivElement;
     const value = target.scrollTop;
 
-    // Chỉ setState khi giá trị scroll thực sự thay đổi
     if (scrollRef.current !== value) {
       scrollRef.current = value;
       setScroll(value);
@@ -82,19 +76,24 @@ export default function ClientComponent() {
   }, []);
 
   const handleBackgroundChange = useCallback(
-    (url: string, gradient: string) => {
+    async (url: string, gradient: string) => {
       if (url === currentBackground.url) return;
 
+      // Set next background để pre-render
       setNextBackground({ url, gradient });
       setIsChanging(true);
 
-      setTimeout(() => {
-        setCurrentBackground({ url, gradient });
+      // Đợi animation
+      return new Promise<void>((resolve) => {
         setTimeout(() => {
-          setIsChanging(false);
-          setNextBackground(null);
-        }, 300);
-      }, 1800);
+          setCurrentBackground({ url, gradient });
+          setTimeout(() => {
+            setIsChanging(false);
+            setNextBackground(null);
+            resolve();
+          }, 300);
+        }, 1200);
+      });
     },
     [currentBackground.url],
   );
