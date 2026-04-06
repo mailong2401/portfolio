@@ -8,7 +8,7 @@ interface HeaderProps {
   windowSize: { width: number; height: number };
 }
 
-const menuItems = ["Home", "Blogs", "Projects", "Pricing", "Contact"];
+const menuItems = ["Home", "About", "Blogs", "Projects", "Tools"];
 
 export default function Header({ mousePosition, windowSize }: HeaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,8 +52,6 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
     }
     setTop(`${10 - moveY / speeds}%`);
     setLeft(`${50 - moveX / speeds}%`);
-    console.log("moveY: " + (10 - moveY / speeds));
-    console.log("moveY" + (50 - moveX / speeds));
   }, [mousePosition, windowSize]);
 
   return (

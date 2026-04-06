@@ -112,23 +112,33 @@ export default function ClientComponent() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.6,
+          duration: 0.7,
           delay: 0.4,
           ease: [0.76, 0, 0.24, 1],
         }}
       >
         <Header mousePosition={mousePosition} windowSize={windowSize} />
       </motion.div>
+
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.3,
+          duration: 0.8,
+          delay: 0.4,
         }}
       >
         <UserCard mousePosition={mousePosition} windowSize={windowSize} />
       </motion.div>
-      <FloatingBackgroundSwitcher onBackgroundChange={handleBackgroundChange} />
+
+      <motion.div
+        transition={{
+          duration: 0.9,
+          delay: 0.6,
+        }}
+      >
+        <FloatingBackgroundSwitcher
+          onBackgroundChange={handleBackgroundChange}
+        />
+      </motion.div>
     </div>
   );
 }
