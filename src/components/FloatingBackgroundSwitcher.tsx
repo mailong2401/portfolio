@@ -177,7 +177,7 @@ export default function FloatingBackgroundSwitcher({
                 <img
                   src={bg.preview}
                   alt={bg.name}
-                  className="w-24 h-15 object-cover"
+                  className="w-15 h-8 md:w-24 md:h-16 object-cover"
                 />
 
                 {/* Gradient Overlay */}
