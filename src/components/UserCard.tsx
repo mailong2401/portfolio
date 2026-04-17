@@ -15,6 +15,10 @@ export default function UserCard({ mousePosition, windowSize }: UserCardProps) {
   const [top, setTop] = useState("50%");
   const [left, setLeft] = useState("50%");
   const [speeds] = useState(80);
+  const isMobile = windowSize.width < 768;
+
+  const baseLeft = isMobile ? 50 : 10;
+  const baseTop = isMobile ? 50 : 40;
 
   // Tính toán transform cho card (di chuyển nhẹ theo chuột, tương tự Header)
   useEffect(() => {
@@ -50,8 +54,8 @@ export default function UserCard({ mousePosition, windowSize }: UserCardProps) {
       moveY = -maxMoveY * percent;
     }
 
-    setTop(`${40 - moveY / speeds}%`);
-    setLeft(`${10 - moveX / speeds}%`);
+    setLeft(`${baseLeft - moveX / speeds}%`);
+    setTop(`${baseTop - moveY / speeds}%`);
   }, [mousePosition, windowSize, speeds]);
 
   // Thông tin user

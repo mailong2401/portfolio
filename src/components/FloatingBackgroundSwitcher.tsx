@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -61,7 +61,15 @@ export default function FloatingBackgroundSwitcher({
   const [selectedBg, setSelectedBg] = useState(backgrounds[0]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const [loadingBgId, setLoadingBgId] = useState<number | null>(null);
-  const itemsPerPage = 4;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  const itemsPerPage = isMobile ? 1 : 4;
 
   const preloadImage = (url: string): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -137,11 +145,10 @@ export default function FloatingBackgroundSwitcher({
           disabled={scrollIndex === 0 || loadingBgId !== null}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`p-1 rounded-full transition-all duration-300 ${
-            scrollIndex === 0 || loadingBgId !== null
-              ? "opacity-30 cursor-not-allowed"
-              : "hover:bg-white/20 cursor-pointer"
-          }`}
+          className={`p-1 rounded-full transition-all duration-300 ${scrollIndex === 0 || loadingBgId !== null
+            ? "opacity-30 cursor-not-allowed"
+            : "hover:bg-white/20 cursor-pointer"
+            }`}
         >
           <ChevronLeft className="w-5 h-5 text-white" />
         </motion.button>
@@ -161,11 +168,10 @@ export default function FloatingBackgroundSwitcher({
               disabled={loadingBgId !== null}
             >
               <div
-                className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
-                  selectedBg.id === bg.id
-                    ? "ring-2 ring-cyan-400 ring-offset-2 ring-offset-black/20"
-                    : ""
-                } ${loadingBgId === bg.id ? "opacity-50" : ""}`}
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 ${selectedBg.id === bg.id
+                  ? "ring-2 ring-cyan-400 ring-offset-2 ring-offset-black/20"
+                  : ""
+                  } ${loadingBgId === bg.id ? "opacity-50" : ""}`}
               >
                 {/* Image Preview */}
                 <img
@@ -204,12 +210,11 @@ export default function FloatingBackgroundSwitcher({
           }
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`p-1 rounded-full transition-all duration-300 ${
-            scrollIndex + itemsPerPage >= backgrounds.length ||
+          className={`p-1 rounded-full transition-all duration-300 ${scrollIndex + itemsPerPage >= backgrounds.length ||
             loadingBgId !== null
-              ? "opacity-30 cursor-not-allowed"
-              : "hover:bg-white/20 cursor-pointer"
-          }`}
+            ? "opacity-30 cursor-not-allowed"
+            : "hover:bg-white/20 cursor-pointer"
+            }`}
         >
           <ChevronRight className="w-5 h-5 text-white" />
         </motion.button>
