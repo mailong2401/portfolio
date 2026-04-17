@@ -128,8 +128,8 @@ export default function FloatingBackgroundSwitcher({
       mode="standard"
       style={{
         position: "fixed",
-        top: "80%",
-        left: "23%",
+        top: isMobile ? "95%" : "80%",
+        left: isMobile ? "50%" : "23%",
       }}
     >
       <div className="flex items-center gap-4 px-4 py-2">
@@ -154,7 +154,7 @@ export default function FloatingBackgroundSwitcher({
         </motion.button>
 
         {/* Horizontal Gallery */}
-        <div className="flex gap-3 overflow-visible">
+        <div className="flex gap-3 overflow-visible w-10 md:w-auto">
           {visibleBackgrounds.map((bg) => (
             <motion.button
               key={bg.id}
