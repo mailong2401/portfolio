@@ -148,9 +148,9 @@ export default function UserCard({ mousePosition, windowSize }: UserCardProps) {
       mouseContainer={containerRef}
       mode="standard"
       style={{
-        position: "fixed",
-        top: top,
-        left: left,
+        position: "absolute",
+        top: "50%",
+        left: "50%",
       }}
     >
       <div className="flex flex-col items-center gap-4">

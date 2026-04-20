@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div
-      className={`${geistSans.className} w-full h-screen overflow-hidden font-[family-name:var(--font-geist-sans)] relative`}
+      className={`${geistSans.className} w-full h-screen  font-[family-name:var(--font-geist-sans)] relative`}
     >
       <AnimatePresence>
         {showWelcome && (

@@ -63,7 +63,7 @@ export default function AnimatedBackground({
     <>
       {/* Main Background */}
       <motion.div
-        className="absolute inset-0 z-0 w-full h-full"
+        className="fixed inset-0 z-0 w-full h-full pointer-events-none"
         initial={{ clipPath: "circle(0% at center)" }}
         animate={{ clipPath: "circle(100% at center)" }}
         transition={{
@@ -73,7 +73,7 @@ export default function AnimatedBackground({
         }}
       >
         <div
-          className="absolute -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
+          className="fixed -inset-[10%] z-0 pointer-events-none  transition-transform duration-500 ease-out will-change-transform"
           style={{
             transform: getBackgroundTransform(),
             transitionTimingFunction: "cubic-bezier(0.2, 0.9, 0.3, 1.1)",
@@ -101,10 +101,10 @@ export default function AnimatedBackground({
             ease: [0.76, 0, 0.24, 1],
             delay: 0.2,
           }}
-          className="absolute inset-0 z-0"
+          className="fixed inset-0 z-0 pointer-events-none"
         >
           <div
-            className="absolute -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
+            className="fixed  -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
             style={{
               transform: getBackgroundTransform(),
               transitionTimingFunction: "cubic-bezier(0.2, 0.9, 0.3, 1.1)",

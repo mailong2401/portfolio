@@ -119,21 +119,33 @@ export default function ClientComponent() {
       >
         <Header mousePosition={mousePosition} windowSize={windowSize} />
       </motion.div>
+      <div className=" flex flex-col pt-30 pl-10 pr-10">
 
-      <motion.div
-        transition={{
-          duration: 0.8,
-          delay: 0.4,
-        }}
-      >
-        <UserCard mousePosition={mousePosition} windowSize={windowSize} />
-      </motion.div>
+        <div className="flex">
 
+          <div className="relative w-100 h-130 ">
+            <motion.div
+              transition={{
+                duration: 0.8,
+                delay: 0.4,
+              }}
+            >
+              <UserCard mousePosition={mousePosition} windowSize={windowSize} />
+            </motion.div>
+          </div>
+          <div className="relative w-full h-100"></div>
+        </div>
+        <div className="relative w-full h-100"></div>
+        <div className="relative w-full h-100"></div>
+        <div className="relative w-full h-100">
+        </div>
+      </div>
       <motion.div
         transition={{
           duration: 0.9,
           delay: 0.6,
         }}
+        className="z-50"
       >
         <FloatingBackgroundSwitcher
           onBackgroundChange={handleBackgroundChange}
