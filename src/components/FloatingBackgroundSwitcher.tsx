@@ -130,7 +130,8 @@ export default function FloatingBackgroundSwitcher({
         position: "fixed",
         top: isMobile ? "95%" : "80%",
         left: isMobile ? "50%" : "23%",
-      }}
+      }
+      }
     >
       <div className="flex items-center gap-4 px-4 py-2">
         {/* Title with icon */}
@@ -219,6 +220,6 @@ export default function FloatingBackgroundSwitcher({
           <ChevronRight className="w-5 h-5 text-white" />
         </motion.button>
       </div>
-    </LiquidGlass>
+    </LiquidGlass >
   );
 }

@@ -71,6 +71,7 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
         position: "fixed",
         top: top,
         left: left,
+        zIndex: 999,
       }}
     >
       <div className={`flex items-center justify-center gap-8 md:gap-8 ${isMobile ? "text-sm" : "text-base"}`}>
