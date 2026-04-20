@@ -145,7 +145,7 @@ export default function FloatingBackgroundSwitcher({
           <div
             onClick={() => setOpenSwitcher(true)}
           >
-            <Palette className="h-6 w-6" />
+            <Palette className=" cursor-not-allowed h-6 w-6" />
           </div>
         </LiquidGlass>
       )}
