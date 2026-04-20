@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   Palette,
   ChevronLeft,
   ChevronRight,
   Loader2,
+  X
 } from "lucide-react";
 import LiquidGlass from "liquid-glass-react";
 
@@ -68,6 +68,7 @@ export default function FloatingBackgroundSwitcher({
   const [scrollIndex, setScrollIndex] = useState(0);
   const [loadingBgId, setLoadingBgId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [openSwitcher, setOpenSwitcher] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -124,108 +125,138 @@ export default function FloatingBackgroundSwitcher({
   );
 
   return (
-    <LiquidGlass
-      displacementScale={100}
-      blurAmount={0.2}
-      saturation={140}
-      aberrationIntensity={2}
-      elasticity={0.2}
-      cornerRadius={32}
-      mode="standard"
-      style={{
-        position: "fixed",
-        top: isMobile ? "95%" : "80%",
-        left: isMobile ? "50%" : "23%",
-      }
-      }
-    >
-      <div className="flex items-center gap-4 px-4 py-2">
-        {/* Title with icon */}
-        <div className="flex items-center gap-2 pr-4 border-r border-white/20">
-          <Palette className="w-4 h-4 text-white" />
-          <span className="text-white text-sm font-medium">Backgrounds</span>
-        </div>
-
-        {/* Navigation Buttons */}
-        <motion.button
-          onClick={prevSlide}
-          disabled={scrollIndex === 0 || loadingBgId !== null}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`p-1 rounded-full transition-all duration-300 ${scrollIndex === 0 || loadingBgId !== null
-            ? "opacity-30 cursor-not-allowed"
-            : "hover:bg-white/20 cursor-pointer"
-            }`}
+    <>
+      {!openSwitcher && (
+        <LiquidGlass
+          displacementScale={80}
+          blurAmount={0.2}
+          saturation={140}
+          aberrationIntensity={2}
+          elasticity={0.2}
+          cornerRadius={999}
+          mode="standard"
+          style={{
+            cursor: "pointer",
+            position: "fixed",
+            top: isMobile ? "95%" : "90%",
+            left: isMobile ? "15%" : "6%",
+          }}
         >
-          <ChevronLeft className="w-5 h-5 text-white" />
-        </motion.button>
-
-        {/* Horizontal Gallery */}
-        <div className="flex gap-3 overflow-visible w-10 md:w-auto">
-          {visibleBackgrounds.map((bg) => (
-            <motion.button
-              key={bg.id}
-              onClick={() => handleBackgroundClick(bg)}
-              whileHover={{
-                scale: loadingBgId === null ? 1.05 : 1,
-                y: loadingBgId === null ? -5 : 0,
-              }}
-              whileTap={{ scale: loadingBgId === null ? 0.98 : 1 }}
-              className="relative group"
-              disabled={loadingBgId !== null}
-            >
-              <div
-                className={`relative rounded-xl overflow-hidden transition-all duration-300 ${selectedBg.id === bg.id
-                  ? "ring-2 ring-cyan-400 ring-offset-2 ring-offset-black/20"
-                  : ""
-                  } ${loadingBgId === bg.id ? "opacity-50" : ""}`}
-              >
-                {/* Image Preview */}
-                <img
-                  src={bg.preview}
-                  alt={bg.name}
-                  className="w-15 h-8 md:w-24 md:h-16 object-cover"
-                />
-
-                {/* Gradient Overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${bg.gradient} opacity-60`}
-                />
-
-                {/* Loading Overlay */}
-                {loadingBgId === bg.id && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <Loader2 className="w-6 h-6 text-white animate-spin" />
-                  </div>
-                )}
-
-                {/* Hover Glow Effect */}
-                {loadingBgId === null && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/20 group-hover:via-purple-500/20 group-hover:to-cyan-500/20 transition-all duration-500" />
-                )}
-              </div>
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Navigation Buttons */}
-        <motion.button
-          onClick={nextSlide}
-          disabled={
-            scrollIndex + itemsPerPage >= backgrounds.length ||
-            loadingBgId !== null
+          <div
+            onClick={() => setOpenSwitcher(true)}
+          >
+            <Palette className="h-6 w-6" />
+          </div>
+        </LiquidGlass>
+      )}
+      {openSwitcher && (
+        <LiquidGlass
+          displacementScale={100}
+          blurAmount={0.2}
+          saturation={140}
+          aberrationIntensity={2}
+          elasticity={0.2}
+          cornerRadius={32}
+          mode="standard"
+          style={{
+            position: "fixed",
+            top: isMobile ? "95%" : "90%",
+            left: isMobile ? "50%" : "23%",
           }
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`p-1 rounded-full transition-all duration-300 ${scrollIndex + itemsPerPage >= backgrounds.length ||
-            loadingBgId !== null
-            ? "opacity-30 cursor-not-allowed"
-            : "hover:bg-white/20 cursor-pointer"
-            }`}
+          }
         >
-          <ChevronRight className="w-5 h-5 text-white" />
-        </motion.button>
-      </div>
-    </LiquidGlass >
+          <div className="flex items-center gap-4 px-4 py-2">
+            {/* Title with icon */}
+            <div className="flex items-center gap-2 pr-4 border-r border-white/20">
+              <Palette className="w-4 h-4 text-white" />
+              <span className="text-white text-sm font-medium">Backgrounds</span>
+            </div>
+
+            {/* Navigation Buttons */}
+            <motion.button
+              onClick={prevSlide}
+              disabled={scrollIndex === 0 || loadingBgId !== null}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`p-1 rounded-full transition-all duration-300 ${scrollIndex === 0 || loadingBgId !== null
+                ? "opacity-30 cursor-not-allowed"
+                : "hover:bg-white/20 cursor-pointer"
+                }`}
+            >
+              <ChevronLeft className="w-5 h-5 text-white" />
+            </motion.button>
+
+            {/* Horizontal Gallery */}
+            <div className="flex gap-3 overflow-visible w-10 md:w-auto">
+              {visibleBackgrounds.map((bg) => (
+                <motion.button
+                  key={bg.id}
+                  onClick={() => handleBackgroundClick(bg)}
+                  whileHover={{
+                    scale: loadingBgId === null ? 1.05 : 1,
+                    y: loadingBgId === null ? -5 : 0,
+                  }}
+                  whileTap={{ scale: loadingBgId === null ? 0.98 : 1 }}
+                  className="relative group"
+                  disabled={loadingBgId !== null}
+                >
+                  <div
+                    className={`relative rounded-xl overflow-hidden transition-all duration-300 ${selectedBg.id === bg.id
+                      ? "ring-2 ring-cyan-400 ring-offset-2 ring-offset-black/20"
+                      : ""
+                      } ${loadingBgId === bg.id ? "opacity-50" : ""}`}
+                  >
+                    {/* Image Preview */}
+                    <img
+                      src={bg.preview}
+                      alt={bg.name}
+                      className="w-15 h-8 md:w-24 md:h-16 object-cover"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t ${bg.gradient} opacity-60`}
+                    />
+
+                    {/* Loading Overlay */}
+                    {loadingBgId === bg.id && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <Loader2 className="w-6 h-6 text-white animate-spin" />
+                      </div>
+                    )}
+
+                    {/* Hover Glow Effect */}
+                    {loadingBgId === null && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/20 group-hover:via-purple-500/20 group-hover:to-cyan-500/20 transition-all duration-500" />
+                    )}
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Navigation Buttons */}
+            <motion.button
+              onClick={nextSlide}
+              disabled={
+                scrollIndex + itemsPerPage >= backgrounds.length ||
+                loadingBgId !== null
+              }
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`p-1 rounded-full transition-all duration-300 ${scrollIndex + itemsPerPage >= backgrounds.length ||
+                loadingBgId !== null
+                ? "opacity-30 cursor-not-allowed"
+                : "hover:bg-white/20 cursor-pointer"
+                }`}
+            >
+              <ChevronRight className="w-5 h-5 text-white" />
+            </motion.button>
+            <button onClick={() => setOpenSwitcher(false)}
+            ><X className="w-5 h-5" /></button>
+          </div>
+        </LiquidGlass >
+      )
+      }
+    </>
   );
 }
