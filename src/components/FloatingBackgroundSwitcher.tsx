@@ -13,13 +13,20 @@ import LiquidGlass from "liquid-glass-react";
 const backgrounds = [
   {
     id: 1,
+    name: "anime",
+    url: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
+    gradient: "from-purple-900/30 to-cyan-900/30",
+    preview: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
+  },
+  {
+    id: 2,
     name: "Mountain Lake",
     url: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
     gradient: "from-purple-900/30 to-cyan-900/30",
     preview: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
   },
   {
-    id: 2,
+    id: 3,
     name: "Forest Path",
     url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-blue-900/30 to-emerald-900/30",
@@ -27,7 +34,7 @@ const backgrounds = [
       "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
-    id: 3,
+    id: 4,
     name: "Sunset Beach",
     url: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-orange-900/30 to-red-900/30",
@@ -35,7 +42,7 @@ const backgrounds = [
       "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
-    id: 4,
+    id: 5,
     name: "City Lights",
     url: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-teal-900/30 to-blue-900/30",
@@ -43,7 +50,7 @@ const backgrounds = [
       "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
   },
   {
-    id: 5,
+    id: 6,
     name: "Green Forest",
     url: "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     gradient: "from-green-900/30 to-emerald-900/30",
