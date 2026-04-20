@@ -15,10 +15,6 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
   const [top, setTop] = useState("10%");
   const [left, setLeft] = useState("50%");
   const [speeds] = useState(30);
-  const isMobile = windowSize.width < 768;
-
-  const width = isMobile ? "90vw" : "auto";
-  const padding = isMobile ? "8px 12px" : "12px 24px";
 
   // Tính toán transform cho header (di chuyển nhẹ hơn background)
   useEffect(() => {
@@ -71,10 +67,10 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
         position: "fixed",
         top: top,
         left: left,
-        zIndex: 999,
+        zIndex: 999
       }}
     >
-      <div className={`flex items-center justify-center gap-8 md:gap-8 ${isMobile ? "text-sm" : "text-base"}`}>
+      <div className={`flex items-center justify-center gap-8 md:gap-8 text-sm`}>
         {menuItems.map((item, idx) => (
           <a
             key={idx}

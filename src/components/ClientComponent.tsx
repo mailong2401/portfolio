@@ -111,7 +111,6 @@ export default function ClientComponent() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="z-50"
         transition={{
           duration: 0.7,
           delay: 0.4,
