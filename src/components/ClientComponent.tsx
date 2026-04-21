@@ -129,7 +129,7 @@ export default function ClientComponent() {
                 delay: 0.4,
               }}
             >
-              <UserCard mousePosition={mousePosition} windowSize={windowSize} />
+              <UserCard />
             </motion.div>
           </div>
           <div className="relative w-full h-100"></div>
