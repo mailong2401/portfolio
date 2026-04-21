@@ -30,7 +30,7 @@ export default function ListProject() {
     blurAmount={0.2}
     saturation={140}
     aberrationIntensity={2}
-    elasticity={0.2}
+    elasticity={0}
     cornerRadius={32}
     mode="standard"
     style={{
