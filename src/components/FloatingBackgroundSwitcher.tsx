@@ -134,9 +134,6 @@ export default function FloatingBackgroundSwitcher({
           aberrationIntensity={2}
           elasticity={0.2}
           cornerRadius={32}
-          onClick={() => {
-            setOpenSwitcher(true)
-          }}
           mode="standard"
           style={{
             position: "fixed",
@@ -145,10 +142,12 @@ export default function FloatingBackgroundSwitcher({
           }}
         >
 
-          <div className="flex items-center">
+          <div
+            onClick={() => setOpenSwitcher(true)}
+            className="flex items-center duration-300 transition-all ">
             <Palette className=" h-6 w-6" />
           </div>
-        </LiquidGlass>
+        </LiquidGlass >
       )
       }
       {
