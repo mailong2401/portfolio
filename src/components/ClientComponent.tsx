@@ -7,6 +7,10 @@ import UserCard from "@/components/UserCard";
 import { motion } from "framer-motion";
 import ListProject from "./ListProject";
 import ToggleTranslate from "./layout/toggle-translate";
+import ProfessionalSkills from "./professional-skills";
+import ProgrammingLanguage from "./skills/programming-language";
+import Frameworks from "./skills/frameworks";
+import ToolsDB from "./skills/tools-db";
 
 interface Background {
   url: string;
@@ -104,19 +108,33 @@ export default function ClientComponent() {
               <UserCard />
             </motion.div>
           </div>
-          <div className="relative   w-full h-[600px] ">
+          <div className="relative w-full h-[600px] ">
             <ListProject />
           </div>
         </div>
-        <div className="relative w-full h-100"></div>
-        <div className="relative w-full h-100"></div>
+        <div className="h-30" />
+        <div className=" relative w-full h-[150px]">
+          <ProfessionalSkills />
+        </div>
+        <div className="flex w-full h-[400px] gap-50 justify-center">
+          <div className="relative h-full w-[500px] ">
+            <ProgrammingLanguage />
+          </div>
+          <div className="relative h-full w-[500px] ">
+            <Frameworks />
+          </div>
+          <div className="relative h-full w-[500px] ">
+            <ToolsDB />
+          </div>
+
+        </div>
         <div className="relative w-full h-100">
         </div>
       </div>
       <motion.div
         transition={{
           duration: 0.9,
-          delay: 0.9,
+          delay: 1.5,
         }}
         className="z-50"
       >
@@ -129,10 +147,9 @@ export default function ClientComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 0.9,
+          delay: 1.2,
           ease: [0.76, 0, 0.24, 1],
         }}
-        className="z-100"
       >
         <Header />
       </motion.div>
@@ -141,10 +158,9 @@ export default function ClientComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 0.9,
+          delay: 1.1,
           ease: [0.76, 0, 0.24, 1],
         }}
-        className="z-100"
       >
         <ToggleTranslate />
       </motion.div>
