@@ -21,8 +21,8 @@ export default function ClientComponent() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [currentBackground, setCurrentBackground] = useState<Background>({
-    url: "/images/wallpapers/lamborghini.jpeg",
-    gradient: "from-purple-900/30 to-cyan-900/30",
+    url: "/images/wallpapers/wall_1.jpg",
+    gradient: "from-green-900/30 to-cyan-900/30",
   });
   const [nextBackground, setNextBackground] = useState<Background | null>(null);
   const [isChanging, setIsChanging] = useState(false);

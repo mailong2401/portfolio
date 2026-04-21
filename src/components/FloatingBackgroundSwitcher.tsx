@@ -14,32 +14,32 @@ const backgrounds = [
   {
     id: 1,
     name: "anime",
-    url: "/images/wallpapers/lamborghini.jpeg",
-    gradient: "from-purple-900/30 to-cyan-900/30",
-    preview: "/images/wallpapers/lamborghini.jpeg",
+    url: "/images/wallpapers/wall_1.jpg",
+    gradient: "from-green-900/30 to-emerald-900/30",
+    preview: "/images/wallpapers/wall_1.jpg",
   },
   {
     id: 2,
     name: "Mountain Lake",
-    url: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
-    gradient: "from-purple-900/30 to-cyan-900/30",
-    preview: "https://4kwallpapers.com/images/walls/thumbs_2t/14938.jpg",
+    url: "/images/wallpapers/wall_2.jpg",
+    gradient: "from-green-900/30 to-emerald-900/30",
+    preview: "/images/wallpapers/wall_2.jpg",
   },
   {
     id: 3,
     name: "Forest Path",
-    url: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    url: "/images/wallpapers/wall_3.jpeg",
     gradient: "from-blue-900/30 to-emerald-900/30",
     preview:
-      "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      "/images/wallpapers/wall_3.jpeg"
   },
   {
     id: 4,
     name: "Sunset Beach",
-    url: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    url: "/images/wallpapers/wall_4.jpg",
     gradient: "from-orange-900/30 to-red-900/30",
     preview:
-      "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      "/images/wallpapers/wall_4.jpg"
   },
   {
     id: 5,

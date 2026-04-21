@@ -31,8 +31,8 @@ export default function Header() {
   return (
     <
       >
-      {!show && <LiquidGlass displacementScale={100}
-        blurAmount={0.2}
+      {!show && <LiquidGlass displacementScale={150}
+        blurAmount={0.4}
         saturation={140}
         aberrationIntensity={2}
         elasticity={0.2}
@@ -44,7 +44,7 @@ export default function Header() {
           top: "1%",
           left: "50%",
         }}>
-        <div className="w-50 h-2"></div>
+        <div className="w-50 h-1"></div>
       </LiquidGlass>}
       {show && <LiquidGlass
         displacementScale={100}

@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useRef, useEffect, } from "react";
 
 import { RefObject } from "react";
@@ -95,10 +96,12 @@ export default function AnimatedBackground({
           className="fixed -inset-[10%] z-0 pointer-events-none  transition-transform duration-500 ease-out will-change-transform"
           ref={currentBgRef}
         >
-          <img
+          <Image
             src={currentBackground.url}
             className="absolute inset-0 w-full h-full object-cover"
             alt="Background"
+            width={1980}
+            height={1080}
           />
           <div className="absolute inset-0 bg-black/30"></div>
           <div
@@ -123,10 +126,12 @@ export default function AnimatedBackground({
             className="fixed -inset-[10%] z-0 pointer-events-none  transition-transform duration-500 ease-out will-change-transform"
             ref={nextBgRef}
           >
-            <img
+            <Image
               src={nextBackground.url}
               className="absolute inset-0 w-full h-full object-cover"
               alt="Next Background"
+              width={1980}
+              height={1080}
             />
             <div className="absolute inset-0 bg-black/30"></div>
             <div
