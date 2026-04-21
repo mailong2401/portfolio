@@ -1,61 +1,11 @@
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, } from "react";
 import LiquidGlass from "liquid-glass-react";
 import { motion } from "framer-motion";
 
-interface UserCardProps {
-  mousePosition: { x: number; y: number };
-  windowSize: { width: number; height: number };
-}
 
-export default function UserCard({ mousePosition, windowSize }: UserCardProps) {
+export default function UserCard() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [cardTransform, setCardTransform] = useState("translate(0px, 0px)");
-  const [top, setTop] = useState("50%");
-  const [left, setLeft] = useState("50%");
-  const [speeds] = useState(80);
-  const isMobile = windowSize.width < 768;
-
-  const baseLeft = isMobile ? 50 : 10;
-  const baseTop = isMobile ? 50 : 40;
-
-  // Tính toán transform cho card (di chuyển nhẹ theo chuột, tương tự Header)
-  useEffect(() => {
-    if (windowSize.width === 0) return;
-
-    const deadZoneX = windowSize.width * 0.3;
-    const deadZoneY = windowSize.height * 0.3;
-
-    const leftThreshold = deadZoneX;
-    const rightThreshold = windowSize.width - deadZoneX;
-    const topThreshold = deadZoneY;
-    const bottomThreshold = windowSize.height - deadZoneY;
-
-    let moveX = 0;
-    let moveY = 0;
-
-    const maxMoveX = windowSize.width * 0.04;
-    const maxMoveY = windowSize.height * 0.04;
-
-    if (mousePosition.x < leftThreshold) {
-      const percent = 1 - mousePosition.x / leftThreshold;
-      moveX = maxMoveX * percent;
-    } else if (mousePosition.x > rightThreshold) {
-      const percent = (mousePosition.x - rightThreshold) / deadZoneX;
-      moveX = -maxMoveX * percent;
-    }
-
-    if (mousePosition.y < topThreshold) {
-      const percent = 1 - mousePosition.y / topThreshold;
-      moveY = maxMoveY * percent;
-    } else if (mousePosition.y > bottomThreshold) {
-      const percent = (mousePosition.y - bottomThreshold) / deadZoneY;
-      moveY = -maxMoveY * percent;
-    }
-
-    setLeft(`${baseLeft - moveX / speeds}%`);
-    setTop(`${baseTop - moveY / speeds}%`);
-  }, [mousePosition, windowSize, speeds]);
 
   // Thông tin user
   const userInfo = {
