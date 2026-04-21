@@ -128,12 +128,12 @@ export default function FloatingBackgroundSwitcher({
     <>
       {!openSwitcher && (
         <LiquidGlass
-          displacementScale={80}
+          displacementScale={100}
           blurAmount={0.2}
           saturation={140}
           aberrationIntensity={2}
           elasticity={0.2}
-          cornerRadius={999}
+          cornerRadius={32}
           onClick={() => {
             setOpenSwitcher(true)
           }}
@@ -145,7 +145,9 @@ export default function FloatingBackgroundSwitcher({
           }}
         >
 
-          <Palette className=" h-6 w-6" />
+          <div className="flex items-center">
+            <Palette className=" h-6 w-6" />
+          </div>
         </LiquidGlass>
       )
       }
