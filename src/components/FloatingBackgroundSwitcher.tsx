@@ -127,26 +127,26 @@ export default function FloatingBackgroundSwitcher({
   return (
     <>
       {!openSwitcher && (
-        <div onClick={() => setOpenSwitcher(true)} className="cursor-pointer">
-          <LiquidGlass
-            displacementScale={80}
-            blurAmount={0.2}
-            saturation={140}
-            aberrationIntensity={2}
-            elasticity={0.2}
-            cornerRadius={999}
-            mode="standard"
-            style={{
-              cursor: "pointer",
-              position: "fixed",
-              top: isMobile ? "95%" : "90%",
-              left: isMobile ? "15%" : "6%",
-            }}
-          >
+        <LiquidGlass
+          displacementScale={80}
+          blurAmount={0.2}
+          saturation={140}
+          aberrationIntensity={2}
+          elasticity={0.2}
+          cornerRadius={999}
+          onClick={() => {
+            setOpenSwitcher(true)
+          }}
+          mode="standard"
+          style={{
+            position: "fixed",
+            top: isMobile ? "95%" : "90%",
+            left: isMobile ? "15%" : "6%",
+          }}
+        >
 
-            <Palette className=" h-6 w-6" />
-          </LiquidGlass>
-        </div >
+          <Palette className=" h-6 w-6" />
+        </LiquidGlass>
       )
       }
       {
