@@ -5,6 +5,7 @@ import FloatingBackgroundSwitcher from "@/components/FloatingBackgroundSwitcher"
 import AnimatedBackground from "@/components/AnimatedBackground";
 import UserCard from "@/components/UserCard";
 import { motion } from "framer-motion";
+import ListProject from "./ListProject";
 
 interface Background {
   url: string;
@@ -120,9 +121,9 @@ export default function ClientComponent() {
       </motion.div>
       <div className=" flex flex-col pt-30 pl-10 pr-10">
 
-        <div className="flex">
+        <div className="flex  ">
 
-          <div className="relative w-100 h-130 ">
+          <div className="relative w-100 h-100 ">
             <motion.div
               transition={{
                 duration: 0.8,
@@ -132,7 +133,9 @@ export default function ClientComponent() {
               <UserCard />
             </motion.div>
           </div>
-          <div className="relative w-full h-100"></div>
+          <div className="relative w-full h-100 ">
+            <ListProject />
+          </div>
         </div>
         <div className="relative w-full h-100"></div>
         <div className="relative w-full h-100"></div>
