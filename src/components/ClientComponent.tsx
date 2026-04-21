@@ -94,7 +94,7 @@ export default function ClientComponent() {
 
         <div className="flex flex-col md:flex-row   h-[1000px] md:h-[600px] gap-200 md:gap-10">
 
-          <div className="relative   w-full h-[500px] md:w-[400px] md:h-full">
+          <div className="relative   w-full h-[500px] md:w-[400px] md:h-full p-20">
             <motion.div
               transition={{
                 duration: 0.8,
@@ -104,7 +104,7 @@ export default function ClientComponent() {
               <UserCard />
             </motion.div>
           </div>
-          <div className="relative   w-full h-[600px]">
+          <div className="relative   w-full h-[600px] ">
             <ListProject />
           </div>
         </div>
