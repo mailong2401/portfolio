@@ -127,7 +127,10 @@ export default function FloatingBackgroundSwitcher({
   return (
     <>
       {!openSwitcher && (
-        <div onClick={() => setOpenSwitcher(true)}
+        <motion.button
+          onClick={() => setOpenSwitcher(true)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="flex items-center duration-300 transition-all cursor-pointer">
           <LiquidGlass
             displacementScale={100}
@@ -146,7 +149,7 @@ export default function FloatingBackgroundSwitcher({
 
             <Palette className=" h-6 w-6" />
           </LiquidGlass >
-        </div>
+        </motion.button>
       )
       }
       {
