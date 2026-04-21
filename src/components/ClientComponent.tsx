@@ -98,7 +98,7 @@ export default function ClientComponent() {
             <motion.div
               transition={{
                 duration: 0.8,
-                delay: 0.4,
+                delay: 0.9,
               }}
             >
               <UserCard />
@@ -116,7 +116,7 @@ export default function ClientComponent() {
       <motion.div
         transition={{
           duration: 0.9,
-          delay: 0.6,
+          delay: 0.9,
         }}
         className="z-50"
       >
@@ -129,7 +129,7 @@ export default function ClientComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 0.4,
+          delay: 0.9,
           ease: [0.76, 0, 0.24, 1],
         }}
         className="z-100"
@@ -141,7 +141,7 @@ export default function ClientComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 0.4,
+          delay: 0.9,
           ease: [0.76, 0, 0.24, 1],
         }}
         className="z-100"

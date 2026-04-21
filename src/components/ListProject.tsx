@@ -19,23 +19,23 @@ export default function ListProject() {
     {
       id: 1,
       title: "Cartton Shell",
-      image: "/images/cartoon-shell_1.png",
+      image: "/images/projects/cartoon-shell_1.png",
       desc: "Cartoon Shell is a modern Wayland panel built entirely with QuickShell (QML) specifically for Hyprland window manager.",
       tech: ["Qml", "Python"],
     },
     {
       id: 2,
       title: "Billard Manager",
-      image: "/images/billiard_1.png",
+      image: "/images/projects/billiard_1.png",
       desc: "Website quản lí bida hiện đại realtime dành cho doanh nghiệp lớn",
-      tech: ["React", "Nodejs"],
+      tech: ["Nestjs", "Nodejs", "Postgres"],
     },
     {
       id: 3,
-      title: "Billard Manager",
-      image: "/images/billiard_1.png",
-      desc: "Website quản lí bida hiện đại realtime dành cho doanh nghiệp lớn",
-      tech: ["React", "Nodejs"],
+      title: "Flycam Hitek",
+      image: "/images/projects/hitek_flycam.png",
+      desc: "Website giới thiệu Hitek Flycam",
+      tech: ["React", "Nodejs", "supabase"],
     },
   ];
   return (<LiquidGlass
