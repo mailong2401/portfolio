@@ -14,9 +14,9 @@ const backgrounds = [
   {
     id: 1,
     name: "anime",
-    url: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
+    url: "/images/wallpapers/lamborghini.jpeg",
     gradient: "from-purple-900/30 to-cyan-900/30",
-    preview: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
+    preview: "/images/wallpapers/lamborghini.jpeg",
   },
   {
     id: 2,
@@ -131,11 +131,11 @@ export default function FloatingBackgroundSwitcher({
           onClick={() => setOpenSwitcher(true)}
           className="flex items-center duration-300 transition-all cursor-pointer">
           <LiquidGlass
-            displacementScale={100}
+            displacementScale={50}
             blurAmount={0.2}
             saturation={140}
             aberrationIntensity={2}
-            elasticity={0.2}
+            elasticity={0}
             cornerRadius={32}
             mode="standard"
             style={{

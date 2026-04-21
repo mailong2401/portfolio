@@ -55,7 +55,7 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
 
   return (
     <LiquidGlass
-      displacementScale={100}
+      displacementScale={50}
       blurAmount={0.2}
       saturation={140}
       aberrationIntensity={2}
@@ -67,7 +67,6 @@ export default function Header({ mousePosition, windowSize }: HeaderProps) {
         position: "fixed",
         top: top,
         left: left,
-        zIndex: 999
       }}
     >
       <div className={`flex items-center justify-center gap-8 md:gap-8 text-sm`}>

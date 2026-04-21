@@ -6,6 +6,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import UserCard from "@/components/UserCard";
 import { motion } from "framer-motion";
 import ListProject from "./ListProject";
+import ToggleTranslate from "./layout/toggle-translate";
 
 interface Background {
   url: string;
@@ -18,8 +19,8 @@ export default function ClientComponent() {
   const [scroll, setScroll] = useState(0);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [currentBackground, setCurrentBackground] = useState<Background>({
-    url: "https://images2.alphacoders.com/687/thumb-1920-687703.png",
-    gradient: "from-purple-900/30 via-transparent to-cyan-900/30",
+    url: "/images/wallpapers/lamborghini.jpeg",
+    gradient: "from-purple-900/30 to-cyan-900/30",
   });
   const [nextBackground, setNextBackground] = useState<Background | null>(null);
   const [isChanging, setIsChanging] = useState(false);
@@ -108,17 +109,7 @@ export default function ClientComponent() {
         windowSize={windowSize}
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.7,
-          delay: 0.4,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      >
-        <Header mousePosition={mousePosition} windowSize={windowSize} />
-      </motion.div>
+
       <div className=" flex flex-col pt-30 pl-10 pr-10">
 
         <div className="flex  ">
@@ -152,6 +143,30 @@ export default function ClientComponent() {
         <FloatingBackgroundSwitcher
           onBackgroundChange={handleBackgroundChange}
         />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.7,
+          delay: 0.4,
+          ease: [0.76, 0, 0.24, 1],
+        }}
+        className="z-100"
+      >
+        <Header mousePosition={mousePosition} windowSize={windowSize} />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.7,
+          delay: 0.4,
+          ease: [0.76, 0, 0.24, 1],
+        }}
+        className="z-100"
+      >
+        <ToggleTranslate />
       </motion.div>
     </div>
   );

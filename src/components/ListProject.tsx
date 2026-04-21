@@ -26,7 +26,7 @@ export default function ListProject() {
     },
   ];
   return (<LiquidGlass
-    displacementScale={100}
+    displacementScale={50}
     blurAmount={0.2}
     saturation={140}
     aberrationIntensity={2}
@@ -40,15 +40,14 @@ export default function ListProject() {
     }}
   >
     <div className="flex flex-col">
-      <h1 className="text-4xl font-bold text-center pb-6 pt-2">My Project</h1>
+      <h1 className="text-4xl font-bold text-center pb-6 pt-2">My Recent Works</h1>
       <div className="flex gap-10">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="relative flex flex-col gap-5 bg-white/10 p-10 rounded-2xl w-100"
+            className="relative flex flex-col gap-5 bg-white/10 p-10 rounded-2xl w-96 border border-transparent transition-all duration-300 hover:border-white hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]"
           >
             <h1 className="text-xl text-center">{project.title}</h1>
-
             <div className="relative w-full h-[150px] overflow-hidden rounded-2xl">
               <Image
                 src={project.image}
