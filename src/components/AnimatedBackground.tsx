@@ -1,5 +1,8 @@
 
 import { motion } from "framer-motion";
+import { useRef, useEffect, } from "react";
+
+import { RefObject } from "react";
 
 interface Background {
   url: string;
@@ -10,52 +13,70 @@ interface AnimatedBackgroundProps {
   currentBackground: Background;
   nextBackground: Background | null;
   isChanging: boolean;
-  mousePosition: { x: number; y: number };
+  mouseRef: RefObject<{ x: number; y: number }>;
   windowSize: { width: number; height: number };
 }
 
 export default function AnimatedBackground({
   currentBackground,
   nextBackground,
-  isChanging,
-  mousePosition,
+  mouseRef,
   windowSize,
 }: AnimatedBackgroundProps) {
-  const getBackgroundTransform = () => {
-    if (windowSize.width === 0) return "translate(0px, 0px)";
+  const currentBgRef = useRef<HTMLDivElement>(null);
+  const nextBgRef = useRef<HTMLDivElement>(null);
 
-    const deadZoneX = windowSize.width * 0.25;
-    const deadZoneY = windowSize.height * 0.25;
+  useEffect(() => {
+    let rafId: number;
 
-    const leftThreshold = deadZoneX;
-    const rightThreshold = windowSize.width - deadZoneX;
-    const topThreshold = deadZoneY;
-    const bottomThreshold = windowSize.height - deadZoneY;
+    const animate = () => {
+      if (!mouseRef.current) {
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
 
-    let moveX = 0;
-    let moveY = 0;
+      const { x, y } = mouseRef.current;
 
-    const maxMoveX = windowSize.width * 0.1;
-    const maxMoveY = windowSize.height * 0.1;
+      const deadZoneX = windowSize.width * 0.25;
+      const deadZoneY = windowSize.height * 0.25;
 
-    if (mousePosition.x < leftThreshold) {
-      const percent = 1 - mousePosition.x / leftThreshold;
-      moveX = maxMoveX * percent;
-    } else if (mousePosition.x > rightThreshold) {
-      const percent = (mousePosition.x - rightThreshold) / deadZoneX;
-      moveX = -maxMoveX * percent;
-    }
+      let moveX = 0;
+      let moveY = 0;
 
-    if (mousePosition.y < topThreshold) {
-      const percent = 1 - mousePosition.y / topThreshold;
-      moveY = maxMoveY * percent;
-    } else if (mousePosition.y > bottomThreshold) {
-      const percent = (mousePosition.y - bottomThreshold) / deadZoneY;
-      moveY = -maxMoveY * percent;
-    }
+      const maxMoveX = windowSize.width * 0.1;
+      const maxMoveY = windowSize.height * 0.1;
 
-    return `translate(${moveX}px, ${moveY}px)`;
-  };
+      if (x < deadZoneX) {
+        moveX = maxMoveX * (1 - x / deadZoneX);
+      } else if (x > windowSize.width - deadZoneX) {
+        moveX =
+          -maxMoveX *
+          ((x - (windowSize.width - deadZoneX)) / deadZoneX);
+      }
+
+      if (y < deadZoneY) {
+        moveY = maxMoveY * (1 - y / deadZoneY);
+      } else if (y > windowSize.height - deadZoneY) {
+        moveY =
+          -maxMoveY *
+          ((y - (windowSize.height - deadZoneY)) / deadZoneY);
+      }
+
+      // apply cho cả 2 background
+      if (currentBgRef.current) {
+        currentBgRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      }
+
+      if (nextBgRef.current) {
+        nextBgRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => cancelAnimationFrame(rafId);
+  }, [windowSize]);
 
   return (
     <>
@@ -72,10 +93,7 @@ export default function AnimatedBackground({
       >
         <div
           className="fixed -inset-[10%] z-0 pointer-events-none  transition-transform duration-500 ease-out will-change-transform"
-          style={{
-            transform: getBackgroundTransform(),
-            transitionTimingFunction: "cubic-bezier(0.2, 0.9, 0.3, 1.1)",
-          }}
+          ref={currentBgRef}
         >
           <img
             src={currentBackground.url}
@@ -102,11 +120,8 @@ export default function AnimatedBackground({
           className="fixed inset-0 z-0 pointer-events-none"
         >
           <div
-            className="fixed  -inset-[10%] z-0 transition-transform duration-500 ease-out will-change-transform"
-            style={{
-              transform: getBackgroundTransform(),
-              transitionTimingFunction: "cubic-bezier(0.2, 0.9, 0.3, 1.1)",
-            }}
+            className="fixed -inset-[10%] z-0 pointer-events-none  transition-transform duration-500 ease-out will-change-transform"
+            ref={nextBgRef}
           >
             <img
               src={nextBackground.url}

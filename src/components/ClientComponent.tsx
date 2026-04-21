@@ -14,9 +14,7 @@ interface Background {
 }
 
 export default function ClientComponent() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scroll, setScroll] = useState(0);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [currentBackground, setCurrentBackground] = useState<Background>({
     url: "/images/wallpapers/lamborghini.jpeg",
@@ -26,11 +24,9 @@ export default function ClientComponent() {
   const [isChanging, setIsChanging] = useState(false);
 
   // Scroll optimization
-  const scrollRef = useRef(0);
 
   // Mouse move optimization với RAF throttle
   const mouseRef = useRef({ x: 0, y: 0 });
-  const ticking = useRef(false);
 
   useEffect(() => {
     setWindowSize({
@@ -40,14 +36,6 @@ export default function ClientComponent() {
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
-
-      if (!ticking.current) {
-        requestAnimationFrame(() => {
-          setMousePosition(mouseRef.current);
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
     };
 
     const handleResize = () => {
@@ -60,21 +48,13 @@ export default function ClientComponent() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  const handleScroll = useCallback((event: React.UIEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLDivElement;
-    const value = target.scrollTop;
-
-    if (scrollRef.current !== value) {
-      scrollRef.current = value;
-      setScroll(value);
-    }
-  }, []);
 
   const handleBackgroundChange = useCallback(
     async (url: string, gradient: string) => {
@@ -105,7 +85,7 @@ export default function ClientComponent() {
         currentBackground={currentBackground}
         nextBackground={nextBackground}
         isChanging={isChanging}
-        mousePosition={mousePosition}
+        mouseRef={mouseRef}
         windowSize={windowSize}
       />
 
@@ -154,7 +134,7 @@ export default function ClientComponent() {
         }}
         className="z-100"
       >
-        <Header mousePosition={mousePosition} windowSize={windowSize} />
+        <Header />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}

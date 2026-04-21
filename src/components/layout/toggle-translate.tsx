@@ -15,11 +15,11 @@ export default function ToggleTranslate() {
     <>
       {!opened && (
         <LiquidGlass
-          displacementScale={50}
+          displacementScale={100}
           blurAmount={0.2}
           saturation={140}
           aberrationIntensity={2}
-          elasticity={0}
+          elasticity={0.2}
           mode="standard"
           padding="8px 16px"
           style={{
