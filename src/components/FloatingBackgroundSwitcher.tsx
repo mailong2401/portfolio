@@ -127,7 +127,7 @@ export default function FloatingBackgroundSwitcher({
   return (
     <>
       {!openSwitcher && (
-        <div onClick={() => setOpenSwitcher(true)} className="cursor-not-allowed">
+        <div onClick={() => setOpenSwitcher(true)} className="cursor-pointer">
           <LiquidGlass
             displacementScale={80}
             blurAmount={0.2}
