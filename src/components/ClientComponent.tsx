@@ -90,11 +90,11 @@ export default function ClientComponent() {
       />
 
 
-      <div className=" flex flex-col pt-30 pl-10 pr-10">
+      <div className=" flex flex-col pt-100 pl-10 pr-10 md:pt-30">
 
-        <div className="flex  ">
+        <div className="flex flex-col md:flex-row   h-[1000px] md:h-[600px] gap-200 md:gap-10">
 
-          <div className="relative w-100 h-100 ">
+          <div className="relative   w-full h-[500px] md:w-[400px] md:h-full">
             <motion.div
               transition={{
                 duration: 0.8,
@@ -104,7 +104,7 @@ export default function ClientComponent() {
               <UserCard />
             </motion.div>
           </div>
-          <div className="relative w-full h-100 ">
+          <div className="relative   w-full h-[600px]">
             <ListProject />
           </div>
         </div>
@@ -148,6 +148,6 @@ export default function ClientComponent() {
       >
         <ToggleTranslate />
       </motion.div>
-    </div>
+    </div >
   );
 }

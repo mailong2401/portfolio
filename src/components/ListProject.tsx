@@ -1,7 +1,20 @@
 import LiquidGlass from "liquid-glass-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function ListProject() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    check(); // chạy lần đầu
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
+  }, []);
   const projects = [
     {
       id: 1,
@@ -35,13 +48,13 @@ export default function ListProject() {
     mode="standard"
     style={{
       position: "absolute",
-      top: "100%",
+      top: isMobile ? "100%" : "50%",
       left: "50%",
     }}
   >
     <div className="flex flex-col">
       <h1 className="text-4xl font-bold text-center pb-6 pt-2">My Recent Works</h1>
-      <div className="flex gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         {projects.map((project) => (
           <div
             key={project.id}
