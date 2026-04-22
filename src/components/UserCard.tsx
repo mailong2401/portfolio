@@ -103,7 +103,6 @@ export default function UserCard() {
       }}
     >
       <div className="flex flex-col items-center gap-4">
-        {/* Avatar với hiệu ứng glow */}
         <motion.div
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
           className="relative"

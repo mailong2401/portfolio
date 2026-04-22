@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body
-        className={`${inter.className} min-h-screen bg-gradient-to-br from-black via-gray-950 to-black`}
+        className={`${inter.className} min-h-screen bg-black`}
       >
         {children}
       </body>

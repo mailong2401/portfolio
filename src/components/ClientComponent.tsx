@@ -20,6 +20,7 @@ interface Background {
 export default function ClientComponent() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isBgLoaded, setIsBgLoaded] = useState(false);
   const [currentBackground, setCurrentBackground] = useState<Background>({
     url: "/images/wallpapers/wall_1.jpg",
     gradient: "from-green-900/30 to-cyan-900/30",
@@ -90,6 +91,7 @@ export default function ClientComponent() {
         nextBackground={nextBackground}
         isChanging={isChanging}
         mouseRef={mouseRef}
+        onLoadComplete={() => setIsBgLoaded(true)}
         windowSize={windowSize}
       />
 
@@ -99,126 +101,41 @@ export default function ClientComponent() {
         <div className="flex flex-col md:flex-row   h-[1000px] md:h-[600px] gap-200 md:gap-10">
 
           <div className="relative   w-full h-[500px] md:w-[400px] md:h-full p-20">
-            <motion.div
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.2,
-              }}
-            >
-              <UserCard />
-            </motion.div>
+            {isBgLoaded && <UserCard />}
+
           </div>
           <div className="relative w-full h-[600px] ">
-            <motion.div
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.2,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-            >
-              <ListProject />
-            </motion.div>
+            {isBgLoaded && <ListProject />}
+
           </div>
         </div>
         <div className="h-30" />
         <div className=" relative w-full h-[150px]">
-          <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: 1.2,
-              ease: [0.76, 0, 0.24, 1],
-            }}
-          >
-            <ProfessionalSkills />
-          </motion.div>
+          {isBgLoaded && <ProfessionalSkills />}
         </div>
         <div className="flex w-full h-[400px] gap-50 justify-center">
           <div className="relative h-full w-[500px] ">
-            <motion.div
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.4,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-            >
-              <ProgrammingLanguage />
-            </motion.div>
+            {isBgLoaded && <ProgrammingLanguage />}
           </div>
           <div className="relative h-full w-[500px] ">
-            <motion.div
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.3,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-            >
-              <Frameworks />
-            </motion.div>
+            {isBgLoaded && <Frameworks />}
           </div>
           <div className="relative h-full w-[500px] ">
-            <motion.div
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 1.3,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-            >
-              <ToolsDB />
-            </motion.div>
+            {isBgLoaded && <ToolsDB />}
           </div>
 
         </div>
         <div className="relative w-full h-100">
         </div>
       </div>
-      <motion.div
-        initial={{ opacity: 0, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.7,
-          delay: 1.9,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      >
+
+      {isBgLoaded &&
         <FloatingBackgroundSwitcher
           onBackgroundChange={handleBackgroundChange}
         />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.7,
-          delay: 1.2,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      >
-        <Header />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.7,
-          delay: 1.1,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      >
-        <ToggleTranslate />
-      </motion.div>
+      }
+      {isBgLoaded && <Header />}
+      {isBgLoaded && <ToggleTranslate />}
     </div >
   );
 }

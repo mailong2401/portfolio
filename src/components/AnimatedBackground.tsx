@@ -15,6 +15,7 @@ interface AnimatedBackgroundProps {
   nextBackground: Background | null;
   isChanging: boolean;
   mouseRef: RefObject<{ x: number; y: number }>;
+  onLoadComplete?: () => void;
   windowSize: { width: number; height: number };
 }
 
@@ -23,6 +24,7 @@ export default function AnimatedBackground({
   nextBackground,
   mouseRef,
   windowSize,
+  onLoadComplete
 }: AnimatedBackgroundProps) {
   const currentBgRef = useRef<HTMLDivElement>(null);
   const nextBgRef = useRef<HTMLDivElement>(null);
@@ -90,6 +92,9 @@ export default function AnimatedBackground({
           duration: 1.8,
           ease: [0.76, 0, 0.24, 1],
           delay: 0.2,
+        }}
+        onAnimationComplete={() => {
+          onLoadComplete?.();
         }}
       >
         <div
