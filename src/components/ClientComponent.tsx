@@ -96,9 +96,9 @@ export default function ClientComponent() {
       />
 
 
-      <div className=" flex flex-col pt-30 pl-10 pr-10 ">
+      <div className=" flex flex-col pt-50 pl-10 pr-10 md:pt-30">
 
-        <div className="flex flex-col md30lex-row   h-500 md:h-150 gap-200 md:gap-10">
+        <div className="flex flex-col md:flex-row   h-500 md:h-150 gap-200 md:gap-10">
 
           <div className="relative   w-full h-[500px] md:w-[400px] md:h-full p-20">
             {isBgLoaded && <UserCard />}
