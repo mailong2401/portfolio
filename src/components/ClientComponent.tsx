@@ -100,31 +100,84 @@ export default function ClientComponent() {
 
           <div className="relative   w-full h-[500px] md:w-[400px] md:h-full p-20">
             <motion.div
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
               transition={{
-                duration: 0.8,
-                delay: 0.9,
+                duration: 0.7,
+                delay: 1.2,
               }}
             >
               <UserCard />
             </motion.div>
           </div>
           <div className="relative w-full h-[600px] ">
-            <ListProject />
+            <motion.div
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.2,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+            >
+              <ListProject />
+            </motion.div>
           </div>
         </div>
         <div className="h-30" />
         <div className=" relative w-full h-[150px]">
-          <ProfessionalSkills />
+          <motion.div
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 1.2,
+              ease: [0.76, 0, 0.24, 1],
+            }}
+          >
+            <ProfessionalSkills />
+          </motion.div>
         </div>
         <div className="flex w-full h-[400px] gap-50 justify-center">
           <div className="relative h-full w-[500px] ">
-            <ProgrammingLanguage />
+            <motion.div
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.4,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+            >
+              <ProgrammingLanguage />
+            </motion.div>
           </div>
           <div className="relative h-full w-[500px] ">
-            <Frameworks />
+            <motion.div
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.3,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+            >
+              <Frameworks />
+            </motion.div>
           </div>
           <div className="relative h-full w-[500px] ">
-            <ToolsDB />
+            <motion.div
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.3,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+            >
+              <ToolsDB />
+            </motion.div>
           </div>
 
         </div>
@@ -132,18 +185,20 @@ export default function ClientComponent() {
         </div>
       </div>
       <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.9,
-          delay: 1.5,
+          duration: 0.7,
+          delay: 1.9,
+          ease: [0.76, 0, 0.24, 1],
         }}
-        className="z-50"
       >
         <FloatingBackgroundSwitcher
           onBackgroundChange={handleBackgroundChange}
         />
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
@@ -154,7 +209,7 @@ export default function ClientComponent() {
         <Header />
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
