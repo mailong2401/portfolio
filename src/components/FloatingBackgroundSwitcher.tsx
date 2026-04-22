@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Palette,
   ChevronLeft,
@@ -119,7 +119,7 @@ export default function FloatingBackgroundSwitcher({
     scrollIndex + itemsPerPage,
   );
 
-  const childVariants = {
+  const childVariants: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
@@ -128,7 +128,7 @@ export default function FloatingBackgroundSwitcher({
     }
   };
 
-  const imageCardVariants = {
+  const imageCardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
     visible: (i: number) => ({
       opacity: 1,

@@ -1,6 +1,6 @@
 import LiquidGlass from "liquid-glass-react";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const menuItems = ["Home", "About", "Blogs", "Projects", "Tools"];
 
@@ -30,7 +30,7 @@ export default function Header() {
   }, []);
 
   // Variants cho container
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -49,7 +49,7 @@ export default function Header() {
   };
 
   // Variants cho từng menu item
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       y: -20,
@@ -76,7 +76,7 @@ export default function Header() {
   };
 
   // Variants cho hover effect
-  const hoverVariants = {
+  const hoverVariants: Variants = {
     rest: {
       scale: 1,
       y: 0,
@@ -93,7 +93,7 @@ export default function Header() {
   };
 
   // Variants cho underline effect
-  const underlineVariants = {
+  const underlineVariants: Variants = {
     rest: {
       scaleX: 0,
       opacity: 0,

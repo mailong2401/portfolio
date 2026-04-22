@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Geist } from "next/font/google";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +55,7 @@ export default function Home() {
   }, []);
 
   // Animation variants cho chữ
-  const textVariants = {
+  const textVariants: Variants = {
     initial: {
       opacity: 0,
       y: 30,
@@ -87,7 +87,7 @@ export default function Home() {
   };
 
   // Container animation
-  const containerVariants = {
+  const containerVariants: Variants = {
     initial: { opacity: 0 },
     animate: {
       opacity: 1,

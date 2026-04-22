@@ -1,11 +1,11 @@
 import LiquidGlass from "liquid-glass-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function ListProject() {
   const [isMobile, setIsMobile] = useState(false);
-  const [hoveredId, setHoveredId] = useState(null);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   useEffect(() => {
     const check = () => {
@@ -43,7 +43,7 @@ export default function ListProject() {
   ];
 
   // Container variants cho stagger effect
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -55,7 +55,7 @@ export default function ListProject() {
   };
 
   // Card variants cho từng project
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 30,
@@ -76,7 +76,7 @@ export default function ListProject() {
   };
 
   // Title variants
-  const titleVariants = {
+  const titleVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
@@ -91,7 +91,7 @@ export default function ListProject() {
   };
 
   // Tech tag variants
-  const tagVariants = {
+  const tagVariants: Variants = {
     hidden: { opacity: 0, scale: 0 },
     visible: (i) => ({
       opacity: 1,
@@ -106,7 +106,7 @@ export default function ListProject() {
   };
 
   // Image hover variants
-  const imageVariants = {
+  const imageVariants: Variants = {
     rest: { scale: 1 },
     hover: {
       scale: 1.1,
