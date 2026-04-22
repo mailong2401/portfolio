@@ -105,7 +105,7 @@ export default function Home() {
 
   return (
     <div
-      className={`${geistSans.className} w-full h-screen font-[family-name:var(--font-geist-sans)] relative overflow-hidden`}
+      className={`${geistSans.className} w-full h-screen font-[family-name:var(--font-geist-sans)] relative `}
     >
       <AnimatePresence mode="wait">
         {showWelcome && (
