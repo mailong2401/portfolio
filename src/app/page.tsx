@@ -117,22 +117,6 @@ export default function Home() {
             animate="animate"
             exit="exit"
           >
-            {/* Animated background gradient */}
-            <motion.div
-              className="absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{
-                background: "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
-              }}
-            />
 
             <div className="text-center px-4 relative z-10">
               <div className="flex justify-center items-center h-40 md:h-48">
@@ -145,23 +129,6 @@ export default function Home() {
                     exit="exit"
                     className="relative"
                   >
-                    {/* Glow effect behind text */}
-                    <motion.div
-                      className="absolute inset-0 blur-3xl"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: [0.3, 0.6, 0.3],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      style={{
-                        background: "radial-gradient(circle at center, rgba(168, 85, 247, 0.4), transparent)",
-                      }}
-                    />
 
                     {/* Main text */}
                     <motion.h1
