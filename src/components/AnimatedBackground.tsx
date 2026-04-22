@@ -105,8 +105,7 @@ export default function AnimatedBackground({
             src={currentBackground.url}
             className="absolute inset-0 w-full h-full object-cover"
             alt="Background"
-            width={1980}
-            height={1080}
+            fill
           />
           <div className="absolute inset-0 bg-black/30"></div>
           <div
@@ -135,8 +134,7 @@ export default function AnimatedBackground({
               src={nextBackground.url}
               className="absolute inset-0 w-full h-full object-cover"
               alt="Next Background"
-              width={1980}
-              height={1080}
+              fill
             />
             <div className="absolute inset-0 bg-black/30"></div>
             <div
