@@ -128,7 +128,7 @@ export default function ListProject() {
       mode="standard"
       style={{
         position: "absolute",
-        top: isMobile ? "100%" : "50%",
+        top: isMobile ? "5%" : "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
       }}

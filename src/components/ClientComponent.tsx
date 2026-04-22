@@ -98,7 +98,7 @@ export default function ClientComponent() {
 
       <div className=" flex flex-col pt-100 pl-10 pr-10 md:pt-30">
 
-        <div className="flex flex-col md:flex-row   h-[1000px] md:h-[600px] gap-200 md:gap-10">
+        <div className="flex flex-col md:flex-row   h-500 md:h-150 gap-200 md:gap-10">
 
           <div className="relative   w-full h-[500px] md:w-[400px] md:h-full p-20">
             {isBgLoaded && <UserCard />}
@@ -110,17 +110,17 @@ export default function ClientComponent() {
           </div>
         </div>
         <div className="h-30" />
-        <div className=" relative w-full h-[150px]">
+        <div className=" relative w-full h-90 md:h-50">
           {isBgLoaded && <ProfessionalSkills />}
         </div>
-        <div className="flex w-full h-[400px] gap-50 justify-center">
-          <div className="relative h-full w-[500px] ">
+        <div className="flex flex-col md:flex-row w-full h-380 md:h-100 gap-50 justify-center">
+          <div className="relative h-full w-full ">
             {isBgLoaded && <ProgrammingLanguage />}
           </div>
-          <div className="relative h-full w-[500px] ">
+          <div className="relative h-full w-full ">
             {isBgLoaded && <Frameworks />}
           </div>
-          <div className="relative h-full w-[500px] ">
+          <div className="relative h-full w-full ">
             {isBgLoaded && <ToolsDB />}
           </div>
 
